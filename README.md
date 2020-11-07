@@ -16,3 +16,12 @@ First compile the class by running:
 Then execute the Java Bytecode with:
 
 ```java GraphAlgorithms```
+
+## Result Analysis and Underlying Intuition
+
+### DFS Sub-optimality
+- We can see the DFS algorithm visits the smallest number of nodes to reach our end goal, but by doing so it restricts its search space and is unsuccessful in finding the most optimal path.
+
+### A* Edge
+- The BFS algorithm does indeed find the most optimal path (level-order traversal), but it visits a larger number of nodes compared to our best performing algorithm, the A* search. 
+- This edge within the A* search lies within its use of heuristics to 'guide itself' towards paths leading to the end node that are likely shorter.

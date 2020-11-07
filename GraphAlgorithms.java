@@ -54,7 +54,7 @@ class GraphAlgorithms {
 
         System.out.println("Running BFS...");
         int[][] bfsmap = getCopyOfMatrix(map);
-        bfs(bfsmap,start[1],start[0],end[1],end[0],0);
+        bfs(bfsmap,start[1],start[0],end[1],end[0]);
         printMatrix(bfsmap);
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println();
@@ -62,11 +62,11 @@ class GraphAlgorithms {
         System.out.println("Running A* search...");
         int[][] astarmap = getCopyOfMatrix(map);
         printMatrix(astarmap);
-        aStarSearch(astarmap,start[1],start[0],end[1],end[0],0);
+        aStarSearch(astarmap,start[1],start[0],end[1],end[0]);
     }
 
 
-    static boolean dfs(int[][] map, int x, int y, int end_x, int end_y, IntWrapper numVisited, List<String> path){
+    private static boolean dfs(int[][] map, int x, int y, int end_x, int end_y, IntWrapper numVisited, List<String> path){
         if (x<0 || x>map[0].length-1 || y<0 || y>map.length-1) return false;
         if (x==end_x && y==end_y){
             map[y][x] = 3; //Mark end position
@@ -98,17 +98,17 @@ class GraphAlgorithms {
                 //traverse left
                 List<String> pathleft = new ArrayList<>(path);
                 pathleft.add("left");
-                if (dfs(map,x-1,y,end_x,end_y, numVisited, pathleft)) return true;
+                return dfs(map, x - 1, y, end_x, end_y, numVisited, pathleft);
             }
         }
-        return false;
     }
 
-    static boolean bfs(int[][] map, int x, int y, int end_x, int end_y, Integer numVisited){
+    private static void bfs(int[][] map, int x, int y, int end_x, int end_y){
         Queue<QueueNode> queue = new LinkedList<>();
         List<String> emptyPath = new LinkedList<>();
         QueueNode q = new QueueNode(new Integer[]{y,x}, emptyPath);
         queue.add(q);
+        int numVisited = 0;
         while (!queue.isEmpty()){
             int levelCount = queue.size();
             QueueNode queueNode = queue.remove();
@@ -126,7 +126,7 @@ class GraphAlgorithms {
                     int cost = currPath.size() + 1;
                     System.out.println("Cost of path (number of moves): " + cost);
                     System.out.println("Nodes visited in total: " + numVisited);
-                    return true;
+                    return;
                 } else {
                     if (map[y][x]==1) {
                         numVisited++;
@@ -156,17 +156,12 @@ class GraphAlgorithms {
                 }
             }
         }
-        return false;
     }
 
-    static void aStarSearch(int[][] map, int x, int y, int end_x, int end_y, int numVisited){
-        Comparator<QueueNode> comp = new Comparator<QueueNode>(){
-            @Override
-            public int compare(QueueNode n1, QueueNode n2){
-                return n1.getCost() - n2.getCost();
-            }
-        };
+    private static void aStarSearch(int[][] map, int x, int y, int end_x, int end_y){
+        Comparator<QueueNode> comp = (Comparator<QueueNode>) (n1, n2) -> n1.getCost() - n2.getCost();
         PriorityQueue<QueueNode> pq = new PriorityQueue<>(comp);
+        int numVisited = 0;
         List<String> emptyPath = new LinkedList<>();
         QueueNode node = new QueueNode(new Integer[]{y,x}, emptyPath, getHeuristic(x,y,end_x,end_y));
         pq.add(node);
@@ -215,13 +210,13 @@ class GraphAlgorithms {
         }
     }
 
-    static int[][] getCopyOfMatrix(int[][] map){
+    private static int[][] getCopyOfMatrix(int[][] map){
         int[][] res = new int[map.length][map[0].length];
         for(int i=0; i<map.length; i++) System.arraycopy(map[i], 0, res[i], 0, map[i].length);
         return res;
     }
 
-    static void printMatrix(int[][] map){
+    private static void printMatrix(int[][] map){
         for(int i=0; i<map.length; i++){
             System.out.println(Arrays.toString(map[i]));
         }
@@ -231,11 +226,11 @@ class GraphAlgorithms {
      * Heuristic function for A* traversal must output an underestimated quantification of distance to goal.
      * In our case, a straight line is perfect.
      */
-    static int getHeuristic(int x, int y, int end_x, int end_y){
+    private static int getHeuristic(int x, int y, int end_x, int end_y){
         return (int) Math.sqrt(Math.pow(end_x-x,2) + Math.pow(end_y-y,2));
     }
 
-    static class QueueNode {
+    private static class QueueNode {
         Integer[] coordinates;
         List<String> path;
         int heuristic;
@@ -263,7 +258,7 @@ class GraphAlgorithms {
         }
     }
 
-    static class IntWrapper {
+    private static class IntWrapper {
         public Integer value;
 
         IntWrapper(Integer value) {
@@ -279,6 +274,5 @@ class GraphAlgorithms {
             return String.valueOf(value);
         }
     }
-
 }
 
