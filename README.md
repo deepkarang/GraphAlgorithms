@@ -3,9 +3,21 @@
 ## Overview
 This repository is meant for introducing beginners to the world of Graph Algorithms in Java.
 
-It contains a simple implementation of the most commonly used graph traversal algorithms BFS (Breadth-First-Search) & DFS (Depth-First-Search) for your own personal learning and exploration. 
+It contains a simple implementation of the most commonly used graph traversal algorithms BFS & DFS for your own personal learning and exploration. Here is a concise depiction of the 2 algorithms:
 
-For the beginners that want to take it a step further, it also contains an implementation of the famous Metaheuristic algorithm, A* search. It is known to perform better than BFS on average, which performs better than DFS on average.
+<br/>
+
+BFS (***Breadth-First***-Search)
+
+<a title="BFS" href="https://www.uniquesoftwaredev.com/wp-content/uploads/2019/12/bfs.gif"> <img width="256" alt="Depth-First-Search" src="https://www.uniquesoftwaredev.com/wp-content/uploads/2019/12/bfs.gif"></a>
+
+<br/><br/>
+
+DFS (***Depth-First***-Search)
+
+<a title="Mre, CC BY-SA 3.0 &lt;https://creativecommons.org/licenses/by-sa/3.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Depth-First-Search.gif"><img width="256" alt="Depth-First-Search" src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif"></a>
+
+For the people that want to take it a step further, it also contains an implementation of the famous Metaheuristic algorithm, A* search. It is known to perform better than BFS on average, which performs better than DFS on average.
 
 ## Execution Instructions
 
