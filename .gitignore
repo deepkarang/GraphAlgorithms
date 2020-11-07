@@ -1,0 +1,5 @@
+# Ignore compiled code
+*.class
+
+# Ignore IntelliJ files
+.idea/
