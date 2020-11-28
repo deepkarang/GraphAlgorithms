@@ -3,3 +3,6 @@
 
 # Ignore IntelliJ files
 .idea/
+
+# Ignore VS Code files
+.vscode/
